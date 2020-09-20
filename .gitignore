@@ -2,4 +2,5 @@
 */.idea
 */.mvn
 .DS_Store
+*/.gitignore
 
