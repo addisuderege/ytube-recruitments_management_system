@@ -11,4 +11,7 @@
 4) Providing the Correct return type with correct Status code.
 - Using **ResponseEntity** as the return type.
 - Making use of correct **HTTP Status Code**. You can access the list of codes [here.](https://httpstatuses.com/)
-5) Documenting the APIs. 
+5) Parameteres
+- Path Variables => @PathVariable
+- Request or query params => @RequestParam
+6) Documenting the APIs. 
