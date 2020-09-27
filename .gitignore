@@ -3,4 +3,5 @@
 */.mvn
 .DS_Store
 */.gitignore
+/thumbs
 
