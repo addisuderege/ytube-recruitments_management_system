@@ -1,26 +1,25 @@
 package com.codehooks.rms.controller;
 
-import com.codehooks.rms.dto.JobCategoryDto;
+import com.codehooks.rms.entity.JobCategory;
+import com.codehooks.rms.service.JobCategoryService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/jobCategories")
 public class JobCategoryController {
 
-    @GetMapping
-    public ResponseEntity<JobCategoryDto> getAllCategories() {
-        JobCategoryDto jobCategoryDto = JobCategoryDto.builder()
-                .id("1")
-                .jobCategoryName("Development")
-                .jobCategoryCode("Dev")
-                .description("Some description about the development")
-                .build();
+    @Autowired
+    private JobCategoryService service;
 
-        return ResponseEntity.ok().body(jobCategoryDto);
+    @GetMapping
+    public ResponseEntity<List<JobCategory>> getAllCategories() {
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping(path = "/filter")
@@ -29,12 +28,17 @@ public class JobCategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<JobCategoryDto> saveCategory(@RequestBody JobCategoryDto jobCategoryDto) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(jobCategoryDto);
+    public ResponseEntity<JobCategory> saveCategory(@RequestBody JobCategory JobCategory) {
+        return null;
+    }
+
+    @PutMapping
+    public ResponseEntity<JobCategory> updateCategory(@RequestBody JobCategory JobCategory) {
+        return null;
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity deleteJobCategory(@PathVariable("id") String jobCategoryId) {
-        return ResponseEntity.ok("Job Category with id " + jobCategoryId + " is deleted successfully");
+        return null;
     }
 }
