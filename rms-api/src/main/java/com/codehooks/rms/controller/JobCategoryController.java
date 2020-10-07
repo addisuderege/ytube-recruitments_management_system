@@ -17,28 +17,37 @@ public class JobCategoryController {
     @Autowired
     private JobCategoryService service;
 
-    @GetMapping
-    public ResponseEntity<List<JobCategory>> getAllCategories() {
-        return ResponseEntity.ok(service.findAll());
-    }
-
-    @GetMapping(path = "/filter")
-    public ResponseEntity<String> filterRecords(@RequestParam Map<String, Object> filters) {
-        return ResponseEntity.ok("Filtering the data with filter value : " + filters);
-    }
-
+    // Save data
     @PostMapping
-    public ResponseEntity<JobCategory> saveCategory(@RequestBody JobCategory JobCategory) {
+    public ResponseEntity<?> saveJobCategory(@RequestBody JobCategory jobCategory) {
+        JobCategory savedJobCategory = service.save(jobCategory);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedJobCategory);
+    }
+
+    // Get data
+    @GetMapping
+    public ResponseEntity<?> getAllJobCategories() {
+        List<JobCategory> jobCategories = service.findAll();
+        return ResponseEntity.ok(jobCategories);
+    }
+
+    //Get data by its id
+    @GetMapping("/{id}")
+    public ResponseEntity getDataById(@PathVariable String id) {
         return null;
     }
 
+    // update Data
     @PutMapping
-    public ResponseEntity<JobCategory> updateCategory(@RequestBody JobCategory JobCategory) {
-        return null;
+    public ResponseEntity<?> updateJobCategory(@RequestBody JobCategory jobCategory) {
+        JobCategory updatedJobCategory = service.update(jobCategory);
+        return ResponseEntity.ok(updatedJobCategory);
     }
 
-    @DeleteMapping(path = "/{id}")
-    public ResponseEntity deleteJobCategory(@PathVariable("id") String jobCategoryId) {
-        return null;
+    // Read Data
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deleteJobCategory(@PathVariable String id) {
+        boolean isDeleted = service.delete(id);
+        return ResponseEntity.ok(isDeleted);
     }
 }
