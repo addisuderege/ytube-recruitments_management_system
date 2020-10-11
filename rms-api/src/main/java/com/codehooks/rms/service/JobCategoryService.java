@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface JobCategoryService extends GenericService<JobCategoryDto> {
 
+    JobCategoryDto findById(String id);
 }

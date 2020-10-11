@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JobCategoryServiceImpl implements JobCategoryService {
@@ -44,5 +45,11 @@ public class JobCategoryServiceImpl implements JobCategoryService {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    @Override
+    public JobCategoryDto findById(String id) {
+        Optional<JobCategory> category = repo.findById(id);
+        return mapper.toDto(category.get());
     }
 }

@@ -12,6 +12,4 @@ public interface JobCategoryRepo extends MongoRepository<JobCategory, String> {
 
     @Query("{ 'jobCategoryCode' : {$regex : ?0} }")
     Optional<JobCategory> findNames(String value);
-
-    // https://docs.spring.io/spring-data/jpa/docs/current/reference/html/#jpa.query-methods
 }
