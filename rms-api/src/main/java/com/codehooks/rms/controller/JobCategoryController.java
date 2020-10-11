@@ -1,5 +1,6 @@
 package com.codehooks.rms.controller;
 
+import com.codehooks.rms.dto.JobCategoryDto;
 import com.codehooks.rms.entity.JobCategory;
 import com.codehooks.rms.service.JobCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +20,15 @@ public class JobCategoryController {
 
     // Save data
     @PostMapping
-    public ResponseEntity<?> saveJobCategory(@RequestBody JobCategory jobCategory) {
-        JobCategory savedJobCategory = service.save(jobCategory);
+    public ResponseEntity<?> saveJobCategory(@RequestBody JobCategoryDto jobCategory) {
+        JobCategoryDto savedJobCategory = service.save(jobCategory);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedJobCategory);
     }
 
     // Get data
     @GetMapping
     public ResponseEntity<?> getAllJobCategories() {
-        List<JobCategory> jobCategories = service.findAll();
+        List<JobCategoryDto> jobCategories = service.findAll();
         return ResponseEntity.ok(jobCategories);
     }
 
@@ -39,8 +40,8 @@ public class JobCategoryController {
 
     // update Data
     @PutMapping
-    public ResponseEntity<?> updateJobCategory(@RequestBody JobCategory jobCategory) {
-        JobCategory updatedJobCategory = service.update(jobCategory);
+    public ResponseEntity<?> updateJobCategory(@RequestBody JobCategoryDto jobCategory) {
+        JobCategoryDto updatedJobCategory = service.update(jobCategory);
         return ResponseEntity.ok(updatedJobCategory);
     }
 

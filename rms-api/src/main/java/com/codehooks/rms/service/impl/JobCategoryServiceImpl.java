@@ -1,7 +1,9 @@
 package com.codehooks.rms.service.impl;
 
 import com.codehooks.rms.dao.JobCategoryRepo;
+import com.codehooks.rms.dto.JobCategoryDto;
 import com.codehooks.rms.entity.JobCategory;
+import com.codehooks.rms.mappers.JobCategoryMapper;
 import com.codehooks.rms.service.JobCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,20 +15,25 @@ public class JobCategoryServiceImpl implements JobCategoryService {
 
     @Autowired
     private JobCategoryRepo repo;
+    @Autowired
+    private JobCategoryMapper mapper;
 
     @Override
-    public List<JobCategory> findAll() {
-        return repo.findAll();
+    public List<JobCategoryDto> findAll() {
+        List<JobCategory> categories = repo.findAll();
+        return mapper.toDtoList(categories);
     }
 
     @Override
-    public JobCategory save(JobCategory jobCategory) {
-        return repo.save(jobCategory);
+    public JobCategoryDto save(JobCategoryDto jobCategory) {
+        JobCategory category = repo.save(mapper.fromDto(jobCategory));
+        return mapper.toDto(category);
     }
 
     @Override
-    public JobCategory update(JobCategory jobCategory) {
-        return repo.save(jobCategory);
+    public JobCategoryDto update(JobCategoryDto jobCategory) {
+        JobCategory category = repo.save(mapper.fromDto(jobCategory));
+        return mapper.toDto(category);
     }
 
     @Override
