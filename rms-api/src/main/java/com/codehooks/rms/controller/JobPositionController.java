@@ -4,6 +4,8 @@ import com.codehooks.rms.dto.JobPositionDto;
 import com.codehooks.rms.dto.ResponseDto;
 import com.codehooks.rms.entity.JobPosition;
 import com.codehooks.rms.service.JobPositionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +23,11 @@ public class JobPositionController {
     @Autowired
     private JobPositionService jobPositionService;
 
+    Logger logger = LoggerFactory.getLogger(JobPositionController.class);
+
     @PostMapping
     public ResponseEntity saveJobPosition(@Valid @RequestBody JobPositionDto jobPosition) {
+        logger.info("JobPositionController[saveJobPosition]");
         JobPositionDto savedJobPosition = jobPositionService.save(jobPosition);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedJobPosition);
     }

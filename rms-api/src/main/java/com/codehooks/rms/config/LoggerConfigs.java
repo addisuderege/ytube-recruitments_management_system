@@ -1,4 +1,4 @@
-package com.codehooks.rms.configs;
+package com.codehooks.rms.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -9,11 +9,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class LoggerConfigs implements WebMvcConfigurer {
 
     @Autowired
-    private LoggerInterceptor logger;
+    private LoggerInterceptor loggerInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(logger)
+        registry.addInterceptor(loggerInterceptor)
                 .addPathPatterns("/**");
     }
 }

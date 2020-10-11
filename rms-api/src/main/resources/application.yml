@@ -4,3 +4,10 @@ spring:
       host: localhost
       port: 27017
       database: recruitment_management_system
+
+logging:
+  level:
+    -root: ERROR
+    -com.codehooks.rms: TRACE
+
+#https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/boot-features-logging.html
