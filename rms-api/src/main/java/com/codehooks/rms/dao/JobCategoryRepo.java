@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface JobCategoryRepo extends MongoRepository<JobCategory, String> {
 
-    Optional<JobCategory> findByJobCategoryCode(String value); // jobcategoryCode like 'value%'
+    Optional<JobCategory> findByJobCategoryCode(String value);
 
     @Query("{ 'jobCategoryCode' : {$regex : ?0} }")
     Optional<JobCategory> findNames(String value);

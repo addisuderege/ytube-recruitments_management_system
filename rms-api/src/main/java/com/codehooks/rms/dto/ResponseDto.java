@@ -3,10 +3,10 @@ package com.codehooks.rms.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+
+import javax.validation.constraints.AssertFalse;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class ResponseDto {
